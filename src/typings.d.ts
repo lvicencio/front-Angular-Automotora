@@ -1,4 +1,8 @@
 /* SystemJS module definition */
+//Jquery
+declare var jQuery:any;
+declare var $:any;
+//fin jQuery
 declare var module: NodeModule;
 interface NodeModule {
   id: string;
