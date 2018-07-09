@@ -13,6 +13,7 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent implements OnInit {
     public title: string;
     public user: User;
+    public status: string;
 
     constructor(
         private _userService: UserService,
@@ -28,9 +29,23 @@ export class RegisterComponent implements OnInit {
         console.log('register.component cargado');
      }
 
-     onSubmit() {
-        console.log(this.user);
-        console.log(this._userService.prueba());
-         
+     onSubmit(form) {
+        // console.log(this.user);
+        // console.log(this._userService.prueba());
+         this._userService.register(this.user).subscribe(
+             response => {
+                if (response.status == 'success') {
+                    this.status = response.status;
+                    // resetear el form
+                    this.user = new User(1, 'ROLE_USER', '', '', '', '');
+                    form.reset();
+                } else {
+                    this.status = 'error';
+                }
+             },
+             error => {
+                 console.log(<any>error);
+             }
+         );
       }
 }

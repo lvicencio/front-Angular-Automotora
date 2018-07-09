@@ -1,7 +1,15 @@
 <div class="col-md-12">
     <h2>{{ title }}</h2>
 
-    <form (ngSubmit)="onSubmit()" #registroForm="ngForm" class="col-md-5">
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+      Registro Correcto, <a [routerLink]="[ '/login']"> Identificate acá</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Error al Registarse
+     </div>
+
+    <form (ngSubmit)="onSubmit(registroForm)" #registroForm="ngForm" class="col-md-5">
 
         <p>
             <label for="name">Nombre</label>
