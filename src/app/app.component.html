@@ -9,14 +9,14 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a href="">Inicio</a>
+          <a [routerLink]="['']">Inicio</a>
         </li>
-        <li>
+        <li *ngIf="identity">
           <a href="">Crear Automovil</a>
         </li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
         <li>
           <a [routerLink]="['login']">Login</a>
         </li>
@@ -24,6 +24,16 @@
           <a [routerLink]="['registro']">Registro</a>
         </li>
       </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+        <li>
+          <a href="#">{{ identity.name + ' ' + identity.lastname }}</a>
+        </li>
+        <li>
+          <a [routerLink]="['logout', 1]">Cerrar Sessión</a>
+        </li>
+      </ul>
+
     </div>
   </div>
 </header>

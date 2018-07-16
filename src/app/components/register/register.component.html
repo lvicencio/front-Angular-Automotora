@@ -29,7 +29,7 @@
 
         <p>
             <label for="email">Correo Electronico</label>
-            <input [(ngModel)]="user.email"  type="email" name="email" #email="ngModel" class="form-control" required >
+            <input [(ngModel)]="user.email"  type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" #email="ngModel" class="form-control" required >
             <span *ngIf="!email.valid && email.touched">
                 Correo Obligatorio
             </span>
@@ -42,8 +42,8 @@
                 Contraseña es Obligatoria
             </span>
         </p>
-
-        <input class="btn btn-success" type="submit" value="Registrar">
+        
+        <input class="btn btn-success" type="submit" value="Registrar" [disabled]="!registroForm.valid">
     </form>
 
 

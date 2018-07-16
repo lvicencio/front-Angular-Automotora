@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
         // console.log(this._userService.prueba());
          this._userService.register(this.user).subscribe(
              response => {
+                // tslint:disable-next-line:triple-equals
                 if (response.status == 'success') {
                     this.status = response.status;
                     // resetear el form
