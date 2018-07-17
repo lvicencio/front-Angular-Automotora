@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     public user: User;
     public token;
     public identity;
+    public status: string;
 
     constructor(
         private _userService: UserService,
@@ -39,6 +40,10 @@ export class LoginComponent implements OnInit {
         this._userService.sigup(this.user).subscribe(
             response => {
                 // token de autentificación
+
+                if (response.status != 'error') {
+                    
+                    this.status = 'success';
                     this.token = response;
                     localStorage.setItem('token', this.token);
                 
@@ -48,11 +53,18 @@ export class LoginComponent implements OnInit {
                         response => {
                             this.identity = response;
                             localStorage.setItem('identity', JSON.stringify(this.identity));
+
+                            this._router.navigate(['home']);
+
+
                         },
                         error => {
                             console.log(<any>error);
                         }
                     );
+                }else {
+                    this.status = 'error';
+                }
             },
             // tslint:disable-next-line:no-shadowed-variable
             error => {
