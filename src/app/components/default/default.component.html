@@ -18,7 +18,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let car of cars">
-                    <td>{{ car.title }}</td>
+                    <td>
+                        <a [routerLink]="[ '/auto', car.id ]">{{ car.title }}</a>
+                        </td>
                     <td>{{ car.price }}</td>
                     <td>
                         <span *ngIf="car.status == 'true'">
@@ -30,7 +32,7 @@
                     </td>
                     <td>
                         <a [routerLink]="[ 'editar-auto', car.id ]" class="btn btn-warning">Editar</a>
-                        <a href="" class="btn btn-danger">Eliminar</a></td>
+                        <a (click)="deleteCar(car.id)" class="btn btn-danger">Eliminar</a></td>
                 </tr>
             </tbody>
         </table>
